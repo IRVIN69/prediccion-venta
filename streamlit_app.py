@@ -7,10 +7,11 @@ from datetime import timedelta
 # Conectar a la base de datos MySQL y obtener los datos
 def get_data():
     conexion = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="minimarket_tiptop"
+       host="firetensor.com",         # Dirección del servidor
+        user="firetens_tiptop",        # Nombre de usuario
+        password="JExX8S9fI=0f",       # Contraseña
+        database="firetens_tiptop",    # Nombre de la base de datos
+        port=3306 
     )
     cursor = conexion.cursor(dictionary=True)
     query = "SELECT created_at AS fecha, total_pagar FROM ventas"
