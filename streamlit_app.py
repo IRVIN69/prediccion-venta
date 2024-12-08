@@ -44,7 +44,6 @@ def predict_sales(df, periods):
 
 # Configuración de Streamlit
 st.title("Predicción de Ventas")
-#st.write("Este módulo utiliza el modelo ARIMA para predecir las ventas.")
 
 # Seleccionar el intervalo de predicción
 interval = st.selectbox("Selecciona el intervalo de predicción:", ("Día", "Semana", "Mes"))
@@ -66,9 +65,13 @@ st.line_chart(df_resampled)
 
 # Predecir las ventas
 forecast = predict_sales(df_resampled, periods)
+
+# Convertir el índice de forecast a solo fecha
+forecast_df = pd.DataFrame(forecast)
+forecast_df.index = forecast_df.index.strftime('%Y-%m-%d')  # Formatear solo con la fecha
+
 st.write("Predicción de ventas para el siguiente periodo seleccionado:")
-st.write(forecast)
+st.write(forecast_df)
 
 # Mostrar resultados de la predicción
 st.line_chart(forecast)
-
